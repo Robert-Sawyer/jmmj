@@ -3,39 +3,45 @@ import classes from './SingleElement.module.css'
 
 const SingleElement = () => {
 
-    const [photo, setPhoto] = useState({});
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState('')
+    const [photo, setPhoto] = useState('')
+    const [explanation, setExplanation] = useState('')
 
-    fetch('https://api.nasa.gov/planetary/apod?date=2020-11-21&api_key=uLJcJlhJyVVdA2yUprR85wmv68xg1Ha2mZ6iALxz',
-        {
-            method: 'get'
-        }
-    )
-        .then(response => response.json())
-        .then(res => console.log(res))
-        .then((jsonPhoto) => {
-            console.log(jsonPhoto)
-            setPhoto(jsonPhoto)
-        })
-        .catch(err => console.log(err))
+    const fetchUrl = 'https://api.nasa.gov/planetary/apod?date=2020-11-21&api_key=uLJcJlhJyVVdA2yUprR85wmv68xg1Ha2mZ6iALxz'
 
-    let image = (
-        <h1>Nie udało się</h1>
-    );
+    useEffect(() => {
+        setLoading(true)
+        fetch(fetchUrl)
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data)
+                setLoading(false)
+                setPhoto(data.url)
+                setExplanation(data.explanation)
+            })
+            .catch((err) => {
+                console.log(err)
+                setLoading(false)
+                setError('Data not available')
+            })
+        //pusta tabela jako drugi argument zapobiega inifinite loop
+    }, [])
 
+    if (loading) {
+        return <h1>Czy wiedziałeś, że Robert to pała?</h1>
+    }
 
-    setTimeout(() => {
-        image = (
-            <img className={classes.Image} alt="" src={photo.url}/>
-        )
-    }, 1000)
-
+    if (error !== '') {
+        return <h1>Error: {error}</h1>
+    }
 
     return (
         <div className={classes.Container}>
-            {image}
+            <div>{explanation}</div>
+            <img src={photo} alt="NASA" width="250" height="150"/>
         </div>
     )
 }
-
 
 export default SingleElement
