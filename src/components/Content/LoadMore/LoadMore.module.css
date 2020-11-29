@@ -1,0 +1,9 @@
+.Button {
+    background: #ffffff;
+    color: #000000;
+    font-size: 15px;
+    font-family: 'Mulish', Verdana, sans-serif;
+    letter-spacing: 1px;
+    padding: 8px 12px;
+    outline: none;
+}

@@ -1,0 +1,7 @@
+.Top {
+    position: relative;
+    top: 88px;
+    height: 50vh;
+    background: url("mininauka29_galaktyka_andromeda.png") top 30% center;
+    background-size: cover;
+}

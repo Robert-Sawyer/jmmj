@@ -1,0 +1,16 @@
+.Links {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 472px;
+    height: 18px;
+    left: calc(50% - 472px/2);
+    top: calc(50% - 18px/2);
+    list-style: none;
+    margin: 0;
+}
+
+.Links li {
+    padding: 0 10px;
+}

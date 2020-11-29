@@ -1,0 +1,15 @@
+.Container {
+
+}
+
+.List {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ElementContainer {
+    width: 250px;
+    height: auto;
+}
